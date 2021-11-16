@@ -1,12 +1,11 @@
 import React from "react";
+import Index from "./useReducer";
 
 function App() {
   return (
-    <main>
-      <div className="container">
-        <div className="content"></div>
-      </div>
-    </main>
+    <div>
+      <Index />
+    </div>
   );
 }
 

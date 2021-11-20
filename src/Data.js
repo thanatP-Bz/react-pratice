@@ -1,20 +1,14 @@
-const Image = [
+const data = [
   {
-    name: "cow",
     id: 1,
+    title: "Do I have to allow the use of cookies?",
+    info: "Unicorn vinyl poutine brooklyn, next level direct trade iceland. Shaman copper mug church-key coloring book, whatever poutine normcore fixie cred kickstarter post-ironic street art.",
   },
   {
-    name: "fox",
     id: 2,
-  },
-  {
-    name: "cat",
-    id: 3,
-  },
-  {
-    name: "dog",
-    id: 4,
+    title: "How do I change my My Page password?",
+    info: "Coloring book forage photo booth gentrify lumbersexual. Migas chillwave poutine synth shoreditch, enamel pin thundercats fashion axe roof party polaroid chartreuse.",
   },
 ];
 
-export default Image;
+export default data;

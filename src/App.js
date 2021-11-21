@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Question from "./Question";
 import Data from "./Data";
+import Test from "./test";
 
 function App() {
   const [question, setQuestion] = useState(Data);
@@ -10,7 +11,7 @@ function App() {
         <h3>answer Question</h3>
         <section className="info">
           {question.map((qst) => {
-            return <Question key={qst.id} {...qst} />;
+            return <Test key={qst.id} {...qst} />;
           })}
         </section>
       </div>

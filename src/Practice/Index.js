@@ -2,11 +2,24 @@ import React, { useReducer, useState } from "react";
 import Modal from "./Modal";
 import "./style.css";
 
-const reducer = (state, action) => {};
+const reducer = (state, action) => {
+  const newItem = [...state.people, action.payload];
+  if (action.type === "ADD_VALUE") {
+    return {
+      ...state,
+      people: newItem,
+      showContent: "item added",
+      isShowModal: true,
+    };
+  }
+
+  throw new Error("please add a value");
+};
 
 const defaultValue = {
   people: [],
-  isShowModal: true,
+  isShowModal: false,
+  showContent: "",
 };
 
 const Index = () => {
@@ -14,25 +27,18 @@ const Index = () => {
 
   const [name, setName] = useState("");
 
-  const [people, setPeople] = useState([]);
-
-  const [modal, setShowModal] = useState(false);
-
   const hideModal = () => {
-    setShowModal(!modal);
+    state.isShowModal(!state.isShowModal);
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
 
     if (name) {
-      const newPerson = { id: Math.random().toString(), name };
-      setPeople((person) => {
-        return [...person, newPerson];
-      });
-      setName("");
+      const newItem = { id: Math.random.toString(), name };
+      dispatch({ type: "ADD_VALUE", payload: newItem });
     } else {
-      hideModal();
+      dispatch({ type: "NO_VALUE" });
     }
   };
 
@@ -44,7 +50,7 @@ const Index = () => {
   return (
     <div>
       <div className="first-container">
-        {modal && <Modal hideModal={hideModal} />}
+        {state.isShowModal && <Modal showContent={state.showContent} />}
         <form className="form" onSubmit={onSubmit}>
           <div>
             <input type="text" value={name} onChange={onChangeName} />
@@ -53,7 +59,7 @@ const Index = () => {
             add person
           </button>
         </form>
-        {people.map((person) => {
+        {state.people.map((person) => {
           return (
             <div key={person.id} className="item">
               <p>{person.name}</p>

@@ -242,6 +242,11 @@ article {
   /* opacity: 0; */
   transition: var(--transition);
 }
+
+.test-color {
+  background-color: aquamarine;
+  margin: 0 1rem;
+}
 /* article.activeSlide {
   opacity: 1;
   transform: translateX(0);

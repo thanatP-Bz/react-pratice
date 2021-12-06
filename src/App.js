@@ -11,7 +11,7 @@ function App() {
           const { id, title, desc } = person;
 
           return (
-            <div key={id}>
+            <div key={id} className="test-color">
               <h4>{title}</h4>
               <p>{desc}</p>
             </div>

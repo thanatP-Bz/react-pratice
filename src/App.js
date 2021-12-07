@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import data from "./data";
+import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
 
 function App() {
   const [people, setPeople] = useState(data);
@@ -10,13 +11,27 @@ function App() {
         {people.map((person, personIndex) => {
           const { id, title, desc } = person;
 
+          let position = "nextSlide";
+
+          if (personIndex === index) {
+            position = "activeSlide";
+          }
+
+          if() {}
+
           return (
-            <div key={id} className="test-color">
+            <article key={id} className={position}>
               <h4>{title}</h4>
               <p>{desc}</p>
-            </div>
+            </article>
           );
         })}
+        <button className="prev">
+          <FiChevronLeft />
+        </button>
+        <button className="next">
+          <FiChevronRight />
+        </button>
       </div>
     </div>
   );

@@ -1,10 +1,8 @@
 import React, { useEffect } from "react";
 
-const Modal = ({ content, showModal }) => {
+const Modal = ({ content }) => {
   useEffect(() => {
-    setTimeout(() => {
-      showModal();
-    }, 3000);
+    setTimeout(() => {}, 3000);
   });
 
   return <div>{content}</div>;

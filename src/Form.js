@@ -1,45 +1,41 @@
 import React, { useState, useReducer } from "react";
 import Modal from "./Modal";
-import Loading from "./Loading";
-
-const data = [
-  {
-    id: 1,
-    name: "jame",
-    position: "worker",
-  },
-  {
-    id: 2,
-    name: "helen",
-    position: "clerk",
-  },
-  {
-    id: 3,
-    name: "mike",
-    position: "checker",
-  },
-];
 
 const initialState = {
   firstName: "",
   position: "",
-  content: "item added",
+  content: "",
+  people: [],
+  showModal: false,
+};
+
+const reducer = (state, action) => {
+  if (action.type === "ADD_ITEM") {
+    const newItem = [...state.people, action.payload];
+    return {
+      ...state,
+      people: newItem,
+      content: "item added",
+      showModal: true,
+    };
+  }
+  throw new Error("");
 };
 
 const Form = () => {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
   const [values, setValues] = useState(initialState);
-  const [showLoading, setShowLoading] = useState(false);
-  const [showModal, setShowModal] = useState(false);
-  const [people, setPeople] = useState(data);
 
   const submitHandler = (e) => {
     e.preventDefault();
     const { firstName, position } = values;
 
     if (firstName && position) {
-      setPeople([...people, { id: Math.random(), firstName, position }]);
-      setShowLoading(!showLoading);
-      setShowModal(!showModal);
+      dispatch({
+        type: "ADD_ITEM",
+        payload: { id: Math.random(), firstName, position },
+      });
       setValues(initialState);
     }
   };
@@ -50,7 +46,7 @@ const Form = () => {
 
   return (
     <>
-      {showModal && <Modal content={values.content} showModal={setShowModal} />}
+      {state.showModal && <Modal content={state.content} />}
       <form onSubmit={submitHandler}>
         <label htmlFor="">name</label>
         <input
@@ -67,8 +63,7 @@ const Form = () => {
           value={values.position}
         />
         <button type="submit">submit</button>
-        {showLoading && <Loading />}
-        {people.map((person) => {
+        {state.people.map((person) => {
           const { id, firstName, position } = person;
           return (
             <div key={id}>

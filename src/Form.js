@@ -1,5 +1,12 @@
 import React, { useState, useReducer } from "react";
+import reducer from "./context/reducer";
 import Modal from "./Modal";
+import {
+  ADD_ITEM,
+  NO_VALUE,
+  REMOVE_ITEM,
+  CLOSE_MODAL,
+} from "./context/actions";
 
 const initialState = {
   firstName: "",
@@ -7,19 +14,6 @@ const initialState = {
   content: "",
   people: [],
   showModal: false,
-};
-
-const reducer = (state, action) => {
-  if (action.type === "ADD_ITEM") {
-    const newItem = [...state.people, action.payload];
-    return {
-      ...state,
-      people: newItem,
-      content: "item added",
-      showModal: true,
-    };
-  }
-  throw new Error("");
 };
 
 const Form = () => {
@@ -33,11 +27,17 @@ const Form = () => {
 
     if (firstName && position) {
       dispatch({
-        type: "ADD_ITEM",
+        type: ADD_ITEM,
         payload: { id: Math.random(), firstName, position },
       });
       setValues(initialState);
+    } else {
+      dispatch({ type: NO_VALUE });
     }
+  };
+
+  const closeModal = () => {
+    dispatch({ type: CLOSE_MODAL });
   };
 
   const onChangeHandler = (e) => {
@@ -46,7 +46,9 @@ const Form = () => {
 
   return (
     <>
-      {state.showModal && <Modal content={state.content} />}
+      {state.showModal && (
+        <Modal closeModal={closeModal} content={state.content} />
+      )}
       <form onSubmit={submitHandler}>
         <label htmlFor="">name</label>
         <input
@@ -70,6 +72,13 @@ const Form = () => {
               <h4>
                 {firstName} {position}
               </h4>
+              <button
+                onClick={() => {
+                  dispatch({ type: REMOVE_ITEM, payload: id });
+                }}
+              >
+                REMOVE
+              </button>
             </div>
           );
         })}

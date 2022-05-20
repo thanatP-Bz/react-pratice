@@ -1,6 +1,7 @@
 import React, { useState, useReducer } from "react";
 import reducer from "./context/reducer";
 import Modal from "./Modal";
+import FormRow from "./context/components/FormRow";
 import {
   ADD_ITEM,
   NO_VALUE,
@@ -50,18 +51,16 @@ const Form = () => {
         <Modal closeModal={closeModal} content={state.content} />
       )}
       <form onSubmit={submitHandler}>
-        <label htmlFor="">name</label>
-        <input
+        <FormRow
           type="text"
           name="firstName"
-          onChange={onChangeHandler}
+          onChangeHandler={onChangeHandler}
           value={values.firstName}
         />
-        <label htmlFor="">position</label>
-        <input
+        <FormRow
           type="text"
           name="position"
-          onChange={onChangeHandler}
+          onChangeHandler={onChangeHandler}
           value={values.position}
         />
         <button type="submit">submit</button>

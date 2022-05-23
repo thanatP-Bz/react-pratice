@@ -1,7 +1,8 @@
 import React, { useState, useReducer } from "react";
 import reducer from "./context/reducer";
 import Modal from "./Modal";
-import FormRow from "./context/components/FormRow";
+import FormRow from "./components/FormRow";
+import { useAppContext } from "./context/appContext";
 import {
   ADD_ITEM,
   NO_VALUE,
@@ -19,6 +20,7 @@ const initialState = {
 
 const Form = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const { addItem } = useAppContext();
 
   const [values, setValues] = useState(initialState);
 

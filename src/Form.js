@@ -20,8 +20,8 @@ const initialState = {
 
 const Form = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const {} = useAppContext();
-
+  const { stateContext } = useAppContext();
+  console.log(stateContext);
   const [values, setValues] = useState(initialState);
 
   const submitHandler = (e) => {
@@ -35,7 +35,6 @@ const Form = () => {
       });
       setValues(initialState);
     } else {
-      dispatch({ type: NO_VALUE });
     }
   };
 

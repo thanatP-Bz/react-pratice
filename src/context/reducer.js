@@ -1,4 +1,4 @@
-import { ADD_ITEM, NO_VALUE, REMOVE_ITEM, CLOSE_MODAL } from "./actions";
+import { ADD_ITEM, DISPLAY_ALERT, REMOVE_ITEM, CLOSE_MODAL } from "./actions";
 
 const reducer = (state, action) => {
   if (action.type === ADD_ITEM) {
@@ -11,7 +11,7 @@ const reducer = (state, action) => {
     };
   }
 
-  if (action.type === NO_VALUE) {
+  if (action.type === DISPLAY_ALERT) {
     return {
       ...state,
       content: "please provide all values",

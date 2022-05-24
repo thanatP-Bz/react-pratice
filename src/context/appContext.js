@@ -1,4 +1,4 @@
-import React, { useContext, useReducer } from "react";
+import React, { useContext, useReducer, useState } from "react";
 import reducer from "./reducer";
 import { ADD_ITEM, NO_VALUE, REMOVE_ITEM, CLOSE_MODAL } from "./actions";
 
@@ -13,14 +13,10 @@ const initialState = {
 const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
-
-  const closeModal = () => {
-    dispatch({ type: CLOSE_MODAL });
-  };
+  const [stateContext, setStateContext] = useState(initialState);
 
   return (
-    <AppContext.Provider value={{ ...state, closeModal }}>
+    <AppContext.Provider value={{ ...stateContext }}>
       {children}
     </AppContext.Provider>
   );

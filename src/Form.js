@@ -20,7 +20,7 @@ const initialState = {
 
 const Form = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { addItem } = useAppContext();
+  const {} = useAppContext();
 
   const [values, setValues] = useState(initialState);
 

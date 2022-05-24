@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
+import { useAppContext } from "./context/appContext";
 
-const Modal = ({ content, closeModal }) => {
+const Modal = ({ content }) => {
+  const { closeModal } = useAppContext();
+
   useEffect(() => {
     setTimeout(() => {
       closeModal();

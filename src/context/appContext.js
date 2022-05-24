@@ -15,10 +15,12 @@ const AppContext = React.createContext();
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const addItem = () => {};
+  const closeModal = () => {
+    dispatch({ type: CLOSE_MODAL });
+  };
 
   return (
-    <AppContext.Provider value={{ ...state, addItem }}>
+    <AppContext.Provider value={{ ...state, closeModal }}>
       {children}
     </AppContext.Provider>
   );
